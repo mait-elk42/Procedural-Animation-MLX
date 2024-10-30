@@ -11,6 +11,7 @@ int *readpixel(const Texture *t, int x, int y) {
 	return (&t->buffer[y * t->Width + x]);
 }
 
+
 // void drawcircle(int radius, int x, int y) {
 
 // }

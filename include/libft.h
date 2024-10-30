@@ -6,12 +6,13 @@
 /*   By: mait-elk <mait-elk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 21:43:40 by mait-elk          #+#    #+#             */
-/*   Updated: 2024/10/30 14:59:17 by mait-elk         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:48:07 by mait-elk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5

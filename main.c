@@ -22,3 +22,4 @@ int main() {
 	mlx_loop(system.MlxPtr);
 }
 
+

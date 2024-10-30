@@ -22,6 +22,7 @@ typedef struct {
 	int 	endian;
 }	Texture;
 
+
 System *data_hook(System *tosave) ;
 int *readpixel(const Texture *t, int x, int y) ;
 void	ProcessTexture(Texture *texture) ;

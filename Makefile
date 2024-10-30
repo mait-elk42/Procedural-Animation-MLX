@@ -6,7 +6,7 @@
 #    By: mait-elk <mait-elk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 18:52:27 by mait-elk          #+#    #+#              #
-#    Updated: 2024/10/30 15:06:20 by mait-elk         ###   ########.fr        #
+#    Updated: 2024/10/30 15:47:52 by mait-elk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS= -Wall -Wextra -Werror -I include
 SRCS= src/system.c
 SRCS_O= $(SRCS:.c=.o)
 NAME= procedural-anim
+
 
 all: $(NAME)
 
