@@ -6,14 +6,14 @@
 #    By: mait-elk <mait-elk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 18:52:27 by mait-elk          #+#    #+#              #
-#    Updated: 2024/10/30 15:47:52 by mait-elk         ###   ########.fr        #
+#    Updated: 2024/10/31 10:53:28 by mait-elk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 COMPILER= cc
 LIBS= -Llib -lmlx -lft -framework OpenGL -framework AppKit
 CFLAGS= -Wall -Wextra -Werror -I include
-SRCS= src/system.c
+SRCS= src/system.c src/events.c src/init.c src/utils.c
 SRCS_O= $(SRCS:.c=.o)
 NAME= procedural-anim
 
