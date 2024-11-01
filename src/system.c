@@ -37,6 +37,7 @@ float PointFdistance(PointI p1, PointI p2) {
 }
 
 void	ProcessTexture(Texture *texture) {
+	System *system = data_hook(NULL);
 	{
 		for (int y = 0; y < texture->Height; y++) {
 			for (int x = 0; x < texture->Width; x++) {
@@ -50,24 +51,24 @@ void	ProcessTexture(Texture *texture) {
 			int targI = i -1;
 			if (i == 0)
 				targI = 0;
-			if (PointFdistance(data_hook(NULL)->snake[targI].position, data_hook(NULL)->snake[currI].position) <= (int)data_hook(NULL)->snake[i].radius)
+			if (PointFdistance(system->snake[targI].position, system->snake[currI].position) <= (int)system->snake[i].radius)
 				;
 			else {
-					float angle = atan2(data_hook(NULL)->snake[currI].position.y - data_hook(NULL)->snake[targI].position.y, data_hook(NULL)->snake[currI].position.x - data_hook(NULL)->snake[targI].position.x);
+					float angle = atan2(system->snake[currI].position.y - system->snake[targI].position.y, system->snake[currI].position.x - system->snake[targI].position.x);
 
 					// Move p to boundary of my circle
-					data_hook(NULL)->snake[currI].position.x = data_hook(NULL)->snake[targI].position.x + (int)(data_hook(NULL)->snake[i].radius * cos(angle));
-					data_hook(NULL)->snake[currI].position.y = data_hook(NULL)->snake[targI].position.y + (int)(data_hook(NULL)->snake[i].radius * sin(angle));
+					system->snake[currI].position.x = system->snake[targI].position.x + (int)(system->snake[i].radius * cos(angle));
+					system->snake[currI].position.y = system->snake[targI].position.y + (int)(system->snake[i].radius * sin(angle));
 			}
-			// data_hook(NULL)->snake[currI].position.y += 17.5f; // GRAVITY ?
+			// system->snake[currI].position.y += 17.5f; // GRAVITY ?
 		}
 		//lerp to make the movement smooth..
-		data_hook(NULL)->snake[0].position.x = data_hook(NULL)->snake[0].targetposition.x + (int)((data_hook(NULL)->snake[0].position.x - data_hook(NULL)->snake[0].targetposition.x) * 0.8f);
-		data_hook(NULL)->snake[0].position.y = data_hook(NULL)->snake[0].targetposition.y + (int)((data_hook(NULL)->snake[0].position.y - data_hook(NULL)->snake[0].targetposition.y) * 0.8f);
+		system->snake[0].position.x = system->snake[0].targetposition.x + (int)((system->snake[0].position.x - system->snake[0].targetposition.x) * 0.8f);
+		system->snake[0].position.y = system->snake[0].targetposition.y + (int)((system->snake[0].position.y - system->snake[0].targetposition.y) * 0.8f);
 	}
 
 
 	for (int i = 0; i < LENGTH; i++)
-		drawcircle(texture, data_hook(NULL)->snake[i].radius, data_hook(NULL)->snake[i].position, data_hook(NULL)->snake[i].color);
+		drawcircle(texture, system->snake[i].radius, system->snake[i].position, system->snake[i].color);
 
 }
