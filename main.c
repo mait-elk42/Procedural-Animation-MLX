@@ -3,8 +3,8 @@
 int main() {
 	System system = {
 		.MlxPtr = mlx_init(),
-		.Win_Height = 1000,
-		.Win_Width = 1000,
+		.Win_Height = 1300,
+		.Win_Width = 1300,
 		.WinPtr = mlx_new_window(system.MlxPtr, system.Win_Width, system.Win_Height, "Procedural Animation"),
 		.maintexture = {
 			.ptr = mlx_new_image(system.MlxPtr, system.Win_Width, system.Win_Height),
@@ -17,9 +17,26 @@ int main() {
 	ft_bzero(system.snake, sizeof(system.snake));
 	data_hook(&system);
 	Init_Keys_Recorder(system.keys);
-	for (int i = 0; i < 18; i++) {
+	struct {
+		int	color;
+		int	radius;
+	} snake[LENGTH] = {
+		{0xff0000,100},
+		{0xfff000,90},
+		{0xffff00,80},
+		{0xfffff0,70},
+		{0xffffff,60},
+		{0xff5fff,50},
+		{0xff1111,45},
+		{0xff5555,40},
+		{0xff0000,30},
+		{0xff0000,25},
+	};
+	for (int i = 0; i < LENGTH; i++) {
 		system.snake[i].position = (PointI){system.maintexture.Width/2, system.maintexture.Height/2};
 		system.snake[i].targetposition = system.snake[0].position;
+		system.snake[i].color = snake[i].color;
+		system.snake[i].radius = snake[i].radius;
 	}
 
 	

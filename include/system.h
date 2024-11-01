@@ -6,6 +6,8 @@
 #include <math.h>
 #include <macros.h>
 
+#define LENGTH 10
+
 
 typedef struct {
 	int		keycode;
@@ -37,6 +39,7 @@ typedef struct {
 	PointI	targetposition;
 	bool	initialized;
 	int		color;
+	int		radius;
 }	Object;
 
 typedef struct {

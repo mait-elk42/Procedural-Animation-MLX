@@ -44,93 +44,30 @@ void	ProcessTexture(Texture *texture) {
 			}
 		}
 	}
-	int radius = 50;
-	// PointI center = {texture->Width/2, texture->Height/2};
-
-	// if (PointFdistance(data_hook(NULL)->ppp, center) <= (int)radius)
-	// 	;
-	// else {
-	// 	;
-		
-	// 	float angle = atan2(data_hook(NULL)->ppp.y - center.y, data_hook(NULL)->ppp.x - center.x);
-
-	// 	// Move p to boundary
-	// 	data_hook(NULL)->ppp.x = center.x + (int)(radius * cos(angle));
-	// 	data_hook(NULL)->ppp.y = center.y + (int)(radius * sin(angle));
-	// }
-	// if (data_hook(NULL)->ppp.x != data_hook(NULL)->targetppp.x && data_hook(NULL)->ppp.y != data_hook(NULL)->targetppp.y)
 	{
-		// if (PointFdistance(data_hook(NULL)->snake[0].position, data_hook(NULL)->snake[1].position) <= (int)radius)
-		// 	;
-		// else {
-		// 		float angle = atan2(data_hook(NULL)->snake[1].position.y - data_hook(NULL)->snake[0].position.y, data_hook(NULL)->snake[1].position.x - data_hook(NULL)->snake[0].position.x);
-
-		// 		// Move p to boundary
-		// 		data_hook(NULL)->snake[1].position.x = data_hook(NULL)->snake[0].position.x + (int)(radius * cos(angle));
-		// 		data_hook(NULL)->snake[1].position.y = data_hook(NULL)->snake[0].position.y + (int)(radius * sin(angle));
-		// }
-		// if (PointFdistance(data_hook(NULL)->snake[1].position, data_hook(NULL)->snake[2].position) <= (int)radius)
-		// 	;
-		// else {
-		// 		float angle = atan2(data_hook(NULL)->snake[2].position.y - data_hook(NULL)->snake[1].position.y, data_hook(NULL)->snake[2].position.x - data_hook(NULL)->snake[1].position.x);
-
-		// 		// Move p to boundary
-		// 		data_hook(NULL)->snake[2].position.x = data_hook(NULL)->snake[1].position.x + (int)(radius * cos(angle));
-		// 		data_hook(NULL)->snake[2].position.y = data_hook(NULL)->snake[1].position.y + (int)(radius * sin(angle));
-		// }
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < LENGTH; i++) {
 			int currI = i;
 			int targI = i -1;
 			if (i == 0)
 				targI = 0;
-			if (PointFdistance(data_hook(NULL)->snake[targI].position, data_hook(NULL)->snake[currI].position) <= (int)radius)
+			if (PointFdistance(data_hook(NULL)->snake[targI].position, data_hook(NULL)->snake[currI].position) <= (int)data_hook(NULL)->snake[i].radius)
 				;
 			else {
 					float angle = atan2(data_hook(NULL)->snake[currI].position.y - data_hook(NULL)->snake[targI].position.y, data_hook(NULL)->snake[currI].position.x - data_hook(NULL)->snake[targI].position.x);
 
-					// Move p to boundary
-					data_hook(NULL)->snake[currI].position.x = data_hook(NULL)->snake[targI].position.x + (int)(radius * cos(angle));
-					data_hook(NULL)->snake[currI].position.y = data_hook(NULL)->snake[targI].position.y + (int)(radius * sin(angle));
+					// Move p to boundary of my circle
+					data_hook(NULL)->snake[currI].position.x = data_hook(NULL)->snake[targI].position.x + (int)(data_hook(NULL)->snake[i].radius * cos(angle));
+					data_hook(NULL)->snake[currI].position.y = data_hook(NULL)->snake[targI].position.y + (int)(data_hook(NULL)->snake[i].radius * sin(angle));
 			}
+			// data_hook(NULL)->snake[currI].position.y += 17.5f; // GRAVITY ?
 		}
-		// if (PointFdistance(data_hook(NULL)->ppp3, data_hook(NULL)->ppp4) <= (int)radius)
-		// 	;
-		// else {
-		// 		float angle = atan2(data_hook(NULL)->ppp4.y - data_hook(NULL)->ppp3.y, data_hook(NULL)->ppp4.x - data_hook(NULL)->ppp3.x);
-
-		// 		// Move p to boundary
-		// 		data_hook(NULL)->ppp4.x = data_hook(NULL)->ppp3.x + (int)(radius * cos(angle));
-		// 		data_hook(NULL)->ppp4.y = data_hook(NULL)->ppp3.y + (int)(radius * sin(angle));
-		// }
-		// if (PointFdistance(data_hook(NULL)->ppp4, data_hook(NULL)->ppp5) <= (int)radius)
-		// 	;
-		// else {
-		// 		float angle = atan2(data_hook(NULL)->ppp5.y - data_hook(NULL)->ppp4.y, data_hook(NULL)->ppp5.x - data_hook(NULL)->ppp4.x);
-
-		// 		// Move p to boundary
-		// 		data_hook(NULL)->ppp5.x = data_hook(NULL)->ppp4.x + (int)(radius * cos(angle));
-		// 		data_hook(NULL)->ppp5.y = data_hook(NULL)->ppp4.y + (int)(radius * sin(angle));
-		// }
-		// if (PointFdistance(data_hook(NULL)->ppp5, data_hook(NULL)->ppp6) <= (int)radius)
-		// 	;
-		// else {
-		// 		float angle = atan2(data_hook(NULL)->ppp6.y - data_hook(NULL)->ppp5.y, data_hook(NULL)->ppp6.x - data_hook(NULL)->ppp5.x);
-
-		// 		// Move p to boundary
-		// 		data_hook(NULL)->ppp6.x = data_hook(NULL)->ppp5.x + (int)(radius * cos(angle));
-		// 		data_hook(NULL)->ppp6.y = data_hook(NULL)->ppp5.y + (int)(radius * sin(angle));
-		// }
+		//lerp to make the movement smooth..
 		data_hook(NULL)->snake[0].position.x = data_hook(NULL)->snake[0].targetposition.x + (int)((data_hook(NULL)->snake[0].position.x - data_hook(NULL)->snake[0].targetposition.x) * 0.8f);
 		data_hook(NULL)->snake[0].position.y = data_hook(NULL)->snake[0].targetposition.y + (int)((data_hook(NULL)->snake[0].position.y - data_hook(NULL)->snake[0].targetposition.y) * 0.8f);
-		// data_hook(NULL)->ppp = data_hook(NULL)->targetppp;
 	}
 
 
-	for (int i = 0; i < 18; i++) {
-		drawcircle(texture, radius, data_hook(NULL)->snake[i].position, 0xffff00);
-	}
-	// drawcircle(texture, radius, data_hook(NULL)->ppp4, 0x00ff00);
-	// drawcircle(texture, radius, data_hook(NULL)->ppp5, 0x0ffff0);
-	// drawcircle(texture, radius, data_hook(NULL)->ppp6, 0x0fff00);
+	for (int i = 0; i < LENGTH; i++)
+		drawcircle(texture, data_hook(NULL)->snake[i].radius, data_hook(NULL)->snake[i].position, data_hook(NULL)->snake[i].color);
 
 }
