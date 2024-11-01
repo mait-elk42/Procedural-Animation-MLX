@@ -22,10 +22,10 @@ int main() {
 		int	radius;
 	} snake[LENGTH] = {
 		{0xff0000,100},
-		{0xfff000,90},
-		{0xffff00,80},
-		{0xfffff0,70},
-		{0xffffff,60},
+		{0xfff000,95},
+		{0xffff00,90},
+		{0xfffff0,85},
+		{0xffffff,80},
 		{0xff5fff,50},
 		{0xff1111,45},
 		{0xff5555,40},
